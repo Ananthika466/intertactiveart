@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Desert Ecosystem</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.7.0/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: #f4a460">
+      <!-- Lighting -->
+      <a-light type="ambient" intensity="1"></a-light>
+      <a-light type="directional" position="5 10 5"></a-light>
+
+      <!-- Sand -->
+      <a-plane
+        rotation="-90 0 0"
+        width="50"
+        height="50"
+        color="#edc9af"
+      ></a-plane>
+      <a-assets>
+        <!-- Preloading the model -->
+        <a-asset-item id="camel" src="./camel_walk.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- Using the model in the scene -->
+      <a-gltf-model
+        animation-mixer
+        src="#camel"
+        position="-20.63617 4.22777 -15.40376"
+        scale="0.22 0.13 0.17"
+        gltf-model="./camel_walk.glb"
+      ></a-gltf-model>
+      <!-- Moving sun (A-Frame animation) -->
+      <a-sphere
+        position="-5 8 -10"
+        radius="1.5"
+        color="yellow"
+        animation="property: position; to: 5 8 -10; dir: alternate; dur: 6000; loop: true"
+      >
+      </a-sphere>
+
+      <!-- Walking character (Robot) -->
+      <a-entity
+        gltf-model="https://cdn.aframe.io/test-models/models/RobotExpressive/RobotExpressive.glb"
+        position="0 0 -5"
+        scale="0.5 0.5 0.5"
+        animation-mixer="clip: Walking; timeScale: 1.8"
+      >
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
